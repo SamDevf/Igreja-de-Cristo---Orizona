@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fallbackTitle: 'Afeições Do Coração – Pr. Edilson Nascimento',
 
     // Forçar estado offline para testes (true = mostra offline; false = detecta)
-    forceOffline: false,
+    forceOffline: true,
   };
 
 
