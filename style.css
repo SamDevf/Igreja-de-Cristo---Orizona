@@ -1191,3 +1191,510 @@ footer {
   .footer-grid { grid-template-columns: 1fr; }
 }
 
+/* ============================================================
+   MINISTRY PAGES — shared components
+   Used by: children.html, youth.html, couples.html,
+            women.html, men.html, missions.html, cells.html
+   ============================================================ */
+
+/* ── Ministry Hero (full-height cinematic banner) ── */
+.min-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+.min-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.min-hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10,10,10,0.30) 0%,
+    rgba(10,10,10,0.62) 55%,
+    rgba(10,10,10,1.00) 100%
+  );
+}
+
+/* grain */
+.min-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* top accent line */
+.min-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 1px; height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--gold));
+  opacity: 0.55;
+  z-index: 3;
+}
+
+.min-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  padding: 0 2rem;
+}
+
+.min-hero-content .hero-eyebrow {
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s forwards;
+}
+
+.min-hero-content .hero-title {
+  opacity: 0;
+  animation: fadeUp 0.9s 0.5s forwards;
+}
+
+.min-hero-content .hero-subtitle {
+  opacity: 0;
+  animation: fadeUp 0.9s 0.7s forwards;
+}
+
+.min-hero-content .hero-btns {
+  opacity: 0;
+  animation: fadeUp 0.9s 0.9s forwards;
+}
+
+/* ── Ministry About (two-col intro) ── */
+.min-about { background: var(--dark); }
+
+.min-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.min-about-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 6px;
+  filter: brightness(0.85) contrast(1.05);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+  display: block;
+}
+
+/* ── Ministry Activities grid ── */
+.min-activities { background: var(--black); }
+
+.min-act-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.min-act-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.6rem;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.min-act-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.35s;
+}
+
+.min-act-card:hover {
+  border-color: rgba(200,169,110,0.4);
+  transform: translateY(-4px);
+}
+
+.min-act-card:hover::before { transform: scaleY(1); }
+
+.min-act-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.min-act-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.min-act-card p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.min-act-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1rem;
+}
+
+.min-act-meta::before {
+  content: '';
+  display: block;
+  width: 16px; height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+/* ── Ministry Gallery ── */
+.min-gallery { background: var(--dark); }
+
+.min-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: 6px;
+  margin-top: 3rem;
+}
+
+.min-gallery-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--dark2);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.min-gallery-item.tall { grid-row: span 2; }
+
+.min-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7) saturate(0.75);
+  transition: filter 0.4s, transform 0.5s;
+}
+
+.min-gallery-item:hover img {
+  filter: brightness(0.9) saturate(1.05);
+  transform: scale(1.06);
+}
+
+.min-gallery-caption {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,0.75) 0%, transparent 55%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.min-gallery-item:hover .min-gallery-caption { opacity: 1; }
+
+.min-gallery-caption span {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--white);
+}
+
+/* ── Ministry CTA (join section) ── */
+.min-cta { background: var(--black); }
+
+.min-cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.min-cta-text .section-text { margin-bottom: 2rem; }
+
+.min-contact-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2.2rem;
+  transition: border-color 0.3s;
+}
+
+.min-contact-card:hover { border-color: rgba(200,169,110,0.4); }
+
+.min-contact-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+}
+
+.min-contact-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+}
+
+.min-contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* WhatsApp button reused from worship.css pattern but inline here */
+.btn-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radius);
+  background: #25d366;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-wa:hover {
+  background: #20bd5a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(37,211,102,0.28);
+}
+
+/* ── Breadcrumb nav ── */
+.min-breadcrumb {
+  position: absolute;
+  bottom: 2.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232,227,218,0.45);
+  z-index: 4;
+  white-space: nowrap;
+}
+
+.min-breadcrumb a {
+  color: rgba(232,227,218,0.45);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.min-breadcrumb a:hover { color: var(--gold); }
+
+.min-breadcrumb span { color: var(--gold); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .min-about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .min-act-grid   { grid-template-columns: 1fr 1fr; }
+  .min-cta-inner  { grid-template-columns: 1fr; gap: 3rem; }
+  .min-gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 200px; }
+  .min-gallery-item.tall { grid-row: span 1; }
+}
+
+@media (max-width: 600px) {
+  .min-act-grid  { grid-template-columns: 1fr; }
+  .min-gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+}
+
+/* =========================================
+   SOCIAL VIDEOS
+========================================= */
+
+.social-videos {
+  background: #0b0b0b;
+}
+
+.social-videos-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* GRID */
+.social-video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+  align-items: start;
+  justify-items: center;
+}
+
+/* CARD */
+.social-video-card {
+  width: 100%;
+  max-width: 340px;
+
+  background: #171717;
+
+  border: 1px solid rgba(201, 168, 106, 0.12);
+  border-radius: 4px;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.social-video-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(201, 168, 106, 0.28);
+
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+/* MEDIA */
+.social-video-media {
+  position: relative;
+}
+
+.social-video-thumb {
+  position: relative;
+
+  width: 100%;
+
+  /* vídeo vertical estilo celular */
+  aspect-ratio: 10 / 16;
+
+  background: #000;
+
+  overflow: hidden;
+}
+
+.social-video-thumb::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.12) 45%,
+    rgba(0, 0, 0, 0.25) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* VIDEO */
+.social-video-thumb video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border: 0;
+
+  background: #000;
+}
+
+/* BODY */
+.social-video-body {
+  padding: 1.2rem 1.2rem 1.35rem;
+
+  background: #171717;
+}
+
+.social-video-category {
+  margin-bottom: 0.85rem;
+
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: #b99252;
+}
+
+.social-video-body h3 {
+  margin: 0 0 0.55rem;
+
+  font-size: 1.02rem;
+  line-height: 1.3;
+
+  color: #f3ede4;
+  font-weight: 500;
+}
+
+.social-video-meta {
+  margin: 0;
+
+  font-size: 0.82rem;
+
+  color: rgba(243, 237, 228, 0.65);
+}
+
+.social-video-card.is-active {
+  border-color: rgba(201, 168, 106, 0.28);
+
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+/* RESPONSIVO */
+@media (max-width: 980px) {
+
+  .social-videos-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-video-card {
+    max-width: 320px;
+  }
+
+}
+
